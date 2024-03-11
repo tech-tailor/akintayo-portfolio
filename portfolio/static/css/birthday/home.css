@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    padding: 0;
+    font: 1em sans-serif;
+}
+
+#countdown-timer {
+    margin: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: blue;
+    background-color: rgb(237, 237, 237);
+
+}
+
+#countdown {
+    text-align: center;
+  }
+  
+  #timer {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid;
+    border-color: blue;
+    margin: 0;
+  }
+  
+  #timer div {
+    margin: 0 10px;
+  }
+  
+#timer span {
+    display: block;    
+}
+
+#days, #hours, #minutes, #seconds {
+    font-size: 60px;
+}
+
+.birthday-celebrant {
+    border: solid, red;
+}
+
+.celebrant {
+    margin: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: blue;
+    background-color: rgb(237, 237, 237);
+}
+
+
+/* Celebrant profile */
+.picture-frame img {
+    display: block;
+    margin: auto;
+    height: auto;
+    width: 200px;
+    border-radius: 50%;
+    border: 4px solid #fff; /* White border around the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.bio h3 {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.bio p{
+    text-align: center;
+    margin: 0;
+}
+
+.messages {
+    margin: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: blue;
+    background-color: rgb(237, 237, 237)
+}
+
+.message-body {
+    margin-bottom: 10px;
+}
+
+.card-message {
+    border-bottom: 1px solid;
+    margin-bottom: 5px;
+}
+
+.send-message{
+    margin: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-color: blue;
+    background-color: rgb(237, 237, 237)
+}
+
+.send-message h4 {
+    text-align: center;
+    margin: 0;
+}
+
+#submit-message {
+    text-align: center;
+    margin: 0;   
+}
+
+.gift-celebrant {
+    margin: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid;
+    border-color: blue;
+    background-color: rgb(237, 237, 237)
+}
+
+.gift-celebrant h4 {
+    text-align: center;
+    margin: 0;
+    
+}
+
+.gift-celebrant p {
+    text-align: center;
+    margin: 0;
+    
+}
+
+
+button #send-gift {
+    text-align: center;
+    margin: 30px;
+    color: red;
+}
