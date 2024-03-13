@@ -83,38 +83,23 @@
     </div>
   </section>
 
+  {% if messages %}
   <section class="messages">
     <div class="row">
-      <div class="col-sm-3 message-body">
+      {% for msg in messages %}
+      <div class="col-sm-6 message-body">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Birthday Message</h5>
-            <p class="card-text card-message">With supporting text below as a natural lead-in to additional content.</p>
-            <p>~from Niyi</p>
+            <p class="card-text card-message">{{ msg.message }}</p>
+            <p>~from {{ msg.sender}}</p>
           </div>
         </div>
       </div>
-      <div class="col-sm-3 message-body">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Birthday Message</h5>
-            <p class="card-text card-message">{{ message }}</p>
-            <p>~from {{ sender }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3 message-body">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Birthday Message</h5>
-            <p class="card-text card-message">With supporting text below as a natural lead-in to additional content.</p>
-            <p>~from Niyi</p>
-          </div>
-        </div>
-      </div>
-      
+      {% endfor %}
     </div>
   </section>
+  {% endif %}
 
   <section class="send-message" id="send-message">
     <h4>Send the greetings, prayers and good wishes to the celebrant</h4>
@@ -130,14 +115,14 @@
         </ul>
       {% endif %}
     {% endwith %}
-    <form action="{{ url_for('birthday.message')}}" method="post">
+    <form action="{{ url_for('birthday.index')}}" method="post">
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" required></textarea>
+        <textarea class="form-control" name="message" placeholder="goodwill messages and prayers" id="exampleFormControlTextarea1" rows="3" required></textarea>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Sender</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="sender" required>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="sender name" name="sender" required>
       </div>
       <div id="passwordHelpBlock" class="form-text">
        Confirm your message before sending. Once you send, only the celebrant
