@@ -15,6 +15,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
           pip install -r requirements.txt
 
       - name: Deploy to Server
@@ -23,4 +25,5 @@ jobs:
           scp -r ./ ${{ secrets.SERVER_ADDRESS }}:~/akintayo-portfolio/
 
       - name: Check deployment
-        echo "deployed"
+        run: |
+          echo "deployed"
