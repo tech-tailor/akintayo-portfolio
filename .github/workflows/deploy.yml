@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -i ${{ "secrets.SSH_PRIVATE_KEY" }} ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
+          ssh -i <(echo "secrets.SSH_PRIVATE_KEY") ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
 
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
