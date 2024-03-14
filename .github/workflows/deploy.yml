@@ -29,7 +29,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
             ssh  -o StrictHostKeyChecking=no ubuntu@54.90.29.10 << 'EOF'
-            mkdir -p ~/akintayo-portfolio/ 
+            mkdir -p ~/akintayo-portfolio/
+            mkdir -p ~/akintayo-portni/
             cd ~/akintayo-portfolio/
             if [ ! -d ".git" ]; then
               echo "Not a Git repository. Initializing..."
