@@ -18,11 +18,14 @@ jobs:
           python3 -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
+   
 
       - name: Deploy to Server
         run: |
-          ssh ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/"
-          scp -r ./ ${{ secrets.SERVER_ADDRESS }}:~/akintayo-portfolio/
+          ssh -i ${{ "secrets.SSH_PRIVATE_KEY" }} ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
+
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Check deployment
         run: |
