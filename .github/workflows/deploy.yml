@@ -26,6 +26,9 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh -vvv -o StrictHostKeyChecking=no ubuntu@54.90.29.10 "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && touch test"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
 
       - name: Create git directory
         run: |
@@ -34,9 +37,7 @@ jobs:
           git pull origin main
 
 
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+        
 
       - name: Check deployment
         run: |
