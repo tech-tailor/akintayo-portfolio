@@ -22,12 +22,14 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > home/ubuntu/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
+          mkdir -p /home/ubuntu/.ssh
+          echo "$SSH_PRIVATE_KEY" > home/ubuntu/.ssh/deploy_key
+          chmod 600 /home/ubuntu/.ssh/deploy_key
+          ssh -i /home/ubuntu/.ssh/deploy_key $SERVER_ADDRESS "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
 
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
 
       - name: Check deployment
         run: |
