@@ -31,7 +31,7 @@ jobs:
             ssh  -o StrictHostKeyChecking=no ubuntu@54.90.29.10 << 'EOF'
             mkdir -p ~/akintayo-portfolio/ 
             cd ~/akintayo-portfolio/
-            if [ ! -d ".git"]; then
+            if [ ! -d ".git" ]; then
               echo "Not a Git repository. Initializing..."
               git init 
               git remote add origin git@github.com:tech-tailor/akintayo-portfolio.git
