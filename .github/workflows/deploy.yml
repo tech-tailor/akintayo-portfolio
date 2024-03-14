@@ -25,15 +25,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -vvv -o StrictHostKeyChecking=no ubuntu@54.90.29.10 "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && touch test"
+          ssh -vvv -o StrictHostKeyChecking=no ubuntu@54.90.29.10 "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
 
       - name: Create git directory
         run: |
-          git init
-          git remote add origin git@github.com:tech-tailor/akintayo-portfolio.git
           git pull origin main
 
 
