@@ -22,8 +22,10 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -i <(echo "secrets.SSH_PRIVATE_KEY") ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
-
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+           ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_ADDRESS }} "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
+           
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
