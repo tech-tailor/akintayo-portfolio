@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to Server
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > home/ubuntu/.ssh/deploy_key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh -i ~/.ssh/deploy_key $SERVER_ADDRESS "mkdir -p ~/akintayo-portfolio/ && cd ~/akintayo-portfolio/ && git pull origin main"
 
