@@ -1,0 +1,112 @@
+#!/usr/bin/python3
+""" Get different pages from the internet"""
+
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import requests
+import os
+
+
+def getpage():
+    """ Get and download page """
+    
+    # Start a chrome browser session
+    try:
+        width, height = 800, 600
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--pageLoadStrategy=eager")
+        chrome_options.add_argument("--disable-network-throttling")
+        chrome_options.add_argument(f"--window-size={width},{height}")
+        chrome_options.add_argument("--disk-cache-size=1")
+        chrome_options.add_argument("--media-cache-size=1")
+
+        # Create a WebDriver instance with the correct argument name
+        driver = webdriver.Chrome(options=chrome_options)
+        print('the driver has connected with chrome')
+
+        url_signin = "https://intranet.alxswe.com/auth/sign_in"
+        email = "ogundareakinniyi8@gmail.com"
+        password = "J3mDdet@AQuJJTT"
+    
+        # navigate to login page
+        driver.get(url_signin)
+        print("chrome has the url now")
+
+        # Find and input login credentials
+        email_field = driver.find_element(By.ID, "user_email")
+        password_field = driver.find_element(By.ID, "user_password")
+        email_field.send_keys(email)
+        password_field.send_keys(password)
+
+        # Submit the form to login
+        print("Login with the supplied credentials")
+        login_button = driver.find_element(By.XPATH, "//input[@type='submit']")
+        login_button.click()
+
+        print("Succefully login")
+        
+        # Navigate to the page you wan to save
+        page_url = "https://intranet.alxswe.com/projects/571"
+        driver.get(page_url)
+        
+    except Exception as e:
+        print("Error ", e)
+    
+    # Get html content of the page
+    html_content = driver.page_source
+
+    # Parse the contents
+    soup = BeautifulSoup(html_content, "lxml")
+
+    # Find title tag
+    title_tag = soup.find("title")
+
+    # check if title exists
+    if title_tag:
+        title = title_tag.text
+        print("Title ", title)
+    else:
+        print("No Title found")
+        
+    # Create directory to save the assets
+    os.makedirs("assets", exist_ok=True)
+
+    # find and download css files
+    from urllib.parse import urljoin
+    base_url = "https://intranet.alxswe.com/"
+    css_files = soup.find_all("link", {"rel": "stylesheet"})
+    for css in css_files:
+        css_url = css["href"]
+        # Get the absolute url
+        abs_css_url = urljoin(base_url, css_url)
+        print(abs_css_url)
+        response = requests.get(abs_css_url)
+        with open(os.path.join("assets", os.path.basename(abs_css_url)), "wb") as f:
+            f.write(response.content)
+
+    # Find and download js
+    js_files = soup.find_all("script", {"src":True})
+    for js in js_files:
+        js_url = js["src"]
+
+        # Get absolute url
+        abs_js_url = urljoin(base_url, js_url)
+        print(abs_js_url)
+        js_response = requests.get(abs_js_url)
+        with open(os.path.join("assets", os.path.basename(abs_js_url)), "wb") as f:
+            f.write(js_response.content)
+            
+    # Save the html to a file
+    with open(f"{title}.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    driver.quit()
+
+
+
+if __name__ == "__main__":
+    getpage()
