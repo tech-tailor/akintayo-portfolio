@@ -9,7 +9,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     PORT= 7000
     SECRET_KEY = 'ffkdgvhgfrjjr876456784y5hnjhgfuy85hk5897fopfjf00939394ldfkjv'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///portfolio.db'
     MAIL_SERVER = 'smtp.example.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True

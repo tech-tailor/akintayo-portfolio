@@ -66,6 +66,7 @@ def secret_message():
     if request.method == 'POST':
         message = request.form.get('message')
         word_count = len(message.split())
+        print('url-------', request.full_path)
         if word_count < 3:
             error = 'Haba! Your message is too short for the celebrant. Please enter a message with at least 3 words'
             flash(error, 'error')

@@ -95,7 +95,6 @@ class BaseModel:
 
 class Message(BaseModel, Base):
     __tablename__ = 'messages'
-    #id = Column(Integer, primary_key=True)
     message = Column(String(1000), nullable=False)
     sender = Column(String(100), nullable=False)
 
@@ -113,3 +112,18 @@ class SecretMessage(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initialize message"""
         super().__init__(*args, **kwargs)
+
+
+class User(BaseModel, Base):
+    """user model"""
+    __tablename__ = 'users'
+    phone_number = Column(String(20), unique=True, nullable=False)
+    name = Column(String(50), nullable=False)
+    email = Column(String(120), unique=True)
+    longitude = Column(String(120))
+    latitude = Column(String(120))
+    
+
+    def __init__(self, phone_number, *args, **kwargs):
+        self.phone_number = phone_number
+        super().__init__(self, *args, **kwargs)

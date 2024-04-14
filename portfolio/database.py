@@ -10,7 +10,6 @@ from portfolio.models import *
 
 def init_db():
     Base.metadata.create_all(bind=engine)
-    print('Database initialized')
 
 Session = sessionmaker(bind=engine)
 session = Session()

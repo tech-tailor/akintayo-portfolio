@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development settings
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Flask specific
+instance/
+webapp.egg-info/
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Environment variables file
+.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Package files
+*.zip
+*.tar.gz
+
+# Database files
+*.db
+*.sqlite
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Testing and coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+*.cover/
+*.py,cover/
+*.mo
+*.pot
+
+# Translations
+*.db
+*.po
+*.mo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Pytest
+pytest_cache/
+
+# Heroku
+*.log
+*.pyc
